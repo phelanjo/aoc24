@@ -1,5 +1,8 @@
 import pandas as pd
 
+# ==================
+# Part 1
+# ==================
 def aoc_day_1__pandas():
     data = pd.read_csv(
         "inputs/day_1_input.txt",
@@ -39,3 +42,26 @@ def aoc_day_1__no_pandas():
         total_distance_between += distance_between
 
     return total_distance_between
+
+# ==================
+# Part 2
+# ==================
+def aoc_day_1__similarity_score():
+    data = pd.read_csv(
+        "inputs/day_1_input.txt",
+        sep="   ",
+        engine='python',
+        names=["source_id", "destination_id"]
+    )
+
+    source_ids = data["source_id"].tolist()
+    destination_ids = data["destination_id"].tolist()
+
+    total_similarity_score = 0
+    for source_id in source_ids:
+        source_id = int(source_id)
+        
+        count = destination_ids.count(source_id)
+        total_similarity_score += (source_id * count)
+
+    return total_similarity_score
